@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Submit New Performance Data - TIRIS</title>
+  <link rel="stylesheet" href="styles/main.css">
+  <style>
+    body {
+      background: #fafbfc;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .submit-container {
+      width: 400px;
+      margin: 60px auto;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+      padding: 32px 32px 24px 32px;
+      text-align: center;
+    }
+    .submit-title {
+      font-size: 1.3em;
+      font-weight: bold;
+      margin-bottom: 18px;
+      color: #2d2dbb;
+    }
+    .submit-form {
+      text-align: left;
+      margin-bottom: 16px;
+    }
+    .submit-form label {
+      display: block;
+      margin-bottom: 4px;
+      font-weight: 500;
+      font-size: 0.97em;
+    }
+    .submit-form input,
+    .submit-form textarea,
+    .submit-form select {
+      width: 100%;
+      padding: 8px 10px;
+      margin-bottom: 14px;
+      border: 1px solid #d1d5db;
+      border-radius: 4px;
+      font-size: 1em;
+      box-sizing: border-box;
+    }
+    .submit-btn {
+      width: 100%;
+      padding: 10px 0;
+      background: #7c3aed;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      font-size: 1em;
+      font-weight: 600;
+      cursor: pointer;
+      margin-bottom: 8px;
+      transition: background 0.2s;
+    }
+    .submit-btn:hover {
+      background: #5b21b6;
+    }
+    .success-message {
+      color: #059669;
+      font-size: 1em;
+      margin-top: 10px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="submit-container">
+    <div class="submit-title">Submit New Performance Data</div>
+    <form class="submit-form" id="performanceForm">
+      <label for="date">Date</label>
+      <input type="date" id="date" required>
+      <label for="activity">Activity Title</label>
+      <input type="text" id="activity" placeholder="e.g. Morning Run (5K)" required>
+      <label for="duration">Duration (minutes)</label>
+      <input type="number" id="duration" min="1" placeholder="e.g. 30" required>
+      <label for="notes">Notes</label>
+      <textarea id="notes" rows="3" placeholder="Describe your performance..." required></textarea>
+      <button type="submit" class="submit-btn">Submit</button>
+    </form>
+    <div class="success-message" id="successMsg">Performance data submitted successfully!</div>
+  </div>
+  <script>
+    document.getElementById('performanceForm').onsubmit = function(e) {
+      e.preventDefault();
+      document.getElementById('successMsg').style.display = 'block';
+      setTimeout(function() {
+        document.getElementById('successMsg').style.display = 'none';
+        window.location.href = 'HOME.html';
+      }, 1500);
+    };
+  </script>
+</body>
+</html>

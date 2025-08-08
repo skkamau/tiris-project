@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sign Up - TIRIS</title>
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap">
+  <style>
+    body {
+      background: linear-gradient(135deg, #f3f4f6 0%, #e0e7ff 100%);
+      font-family: 'Montserrat', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      color: #222;
+    }
+    .signup-container {
+      width: 400px;
+      margin: 60px auto;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 4px 24px rgba(60,72,128,0.09);
+      padding: 36px 32px 28px 32px;
+      text-align: center;
+    }
+    .signup-title {
+      font-size: 1.7em;
+      font-weight: bold;
+      margin-bottom: 18px;
+      color: #7c3aed;
+    }
+    .signup-form {
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .signup-form label {
+      font-weight: 600;
+      color: #7c3aed;
+      margin-bottom: 4px;
+    }
+    .signup-form input,
+    .signup-form select,
+    .signup-form textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      font-size: 1em;
+      background: #f9fafb;
+      margin-bottom: 8px;
+      box-sizing: border-box;
+    }
+    .signup-form input[type="file"] {
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+    .signup-btn {
+      width: 100%;
+      padding: 12px 0;
+      background: linear-gradient(90deg, #7c3aed 60%, #6366f1 100%);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-size: 1.08em;
+      font-weight: 700;
+      cursor: pointer;
+      margin-bottom: 8px;
+      transition: background 0.2s;
+      letter-spacing: 1px;
+      box-shadow: 0 2px 8px #7c3aed22;
+    }
+    .signup-btn:hover {
+      background: linear-gradient(90deg, #5b21b6 60%, #6366f1 100%);
+    }
+    .preview-img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-bottom: 10px;
+      border: 2px solid #7c3aed;
+      display: none;
+    }
+    .success-message {
+      color: #059669;
+      font-size: 1em;
+      margin-top: 10px;
+      display: none;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="signup-container">
+    <div class="signup-title">Create Your Account</div>
+    <form class="signup-form" id="signupForm">
+      <label for="role">Sign up as:</label>
+      <select id="role" required>
+        <option value="">Select role</option>
+        <option value="athlete">Athlete</option>
+        <option value="coach">Coach</option>
+      </select>
+      <label for="name">Full Name</label>
+      <input type="text" id="name" placeholder="Your Name" required>
+      <label for="email">Email</label>
+      <input type="email" id="email" placeholder="your@example.com" required>
+      <label for="password">Password</label>
+      <input type="password" id="password" placeholder="********" required>
+      <label for="location">Location</label>
+      <input type="text" id="location" placeholder="City, Country" required>
+      <label for="sports">Sports You Do</label>
+      <select id="sports" multiple required>
+        <option value="Running">Running</option>
+        <option value="Swimming">Swimming</option>
+        <option value="Cycling">Cycling</option>
+        <option value="Yoga">Yoga</option>
+        <option value="Strength Training">Strength Training</option>
+        <option value="Football">Football</option>
+        <option value="Basketball">Basketball</option>
+        <option value="Other">Other</option>
+      </select>
+      <label for="profilePic">Profile Picture</label>
+      <input type="file" id="profilePic" accept="image/*">
+      <img id="previewImg" class="preview-img" alt="Profile Preview">
+      <button type="submit" class="signup-btn">Sign Up</button>
+      <div class="success-message" id="successMsg">Sign up successful!</div>
+    </form>
+    <div style="margin-top:14px;font-size:0.98em;color:#888;">
+      Already have an account?
+      <a href="LOGIN.html" style="color:#7c3aed;text-decoration:none;">Login</a>
+    </div>
+  </div>
+  <script>
+    // Preview profile picture
+    document.getElementById('profilePic').addEventListener('change', function(e) {
+      const file = e.target.files[0];
+      const preview = document.getElementById('previewImg');
+      if (file) {
+        preview.src = URL.createObjectURL(file);
+        preview.style.display = 'block';
+      } else {
+        preview.src = '';
+        preview.style.display = 'none';
+      }
+    });
+
+    // Handle sign up (demo only)
+    document.getElementById('signupForm').onsubmit = function(e) {
+      e.preventDefault();
+      document.getElementById('successMsg').style.display = 'block';
+      setTimeout(() => {
+        document.getElementById('successMsg').style.display = 'none';
+        document.getElementById('signupForm').reset();
+        document.getElementById('previewImg').style.display = 'none';
+      }, 1500);
+    };
+  </script>
+</body>
+</html>

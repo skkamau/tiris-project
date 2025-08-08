@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Notifications - Athlete | TIRIS</title>
+  <link rel="stylesheet" href="styles/main.css">
+  <style>
+    body { background: linear-gradient(135deg, #f3f4f6 0%, #e0e7ff 100%); font-family: 'Montserrat', Arial, sans-serif; margin: 0; padding: 0; color: #222; }
+    .container { max-width: 600px; margin: 60px auto; background: #fff; border-radius: 16px; box-shadow: 0 4px 24px #7c3aed22; padding: 36px 32px 28px 32px; }
+    h1 { color: #7c3aed; font-size: 2em; font-weight: 700; margin-bottom: 28px; text-align: center; }
+    .alert-list { margin-top: 10px; }
+    .alert-item { padding: 16px 18px; border-radius: 10px; margin-bottom: 18px; font-size: 1.08em; box-shadow: 0 2px 8px #7c3aed11; background: #f9fafb; border-left: 5px solid #7c3aed; }
+    .alert-item.coach { border-left-color: #059669; }
+    .alert-item.training { border-left-color: #b45309; }
+    .alert-item.general { border-left-color: #6366f1; }
+    .alert-icon { font-size: 1.5em; margin-right: 8px; }
+    .alert-time { color: #888; font-size: 0.95em; margin-top: 4px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Your Notifications</h1>
+    <div class="alert-list">
+      <div class="alert-item coach">
+        <span class="alert-icon">👨‍🏫</span>
+        <strong>Coach Message:</strong> "Great job on your last session! Keep it up."
+        <div class="alert-time">2 hours ago</div>
+      </div>
+      <div class="alert-item training">
+        <span class="alert-icon">🔄</span>
+        <strong>Training Update:</strong> Your schedule for next week has changed.
+        <div class="alert-time">Yesterday</div>
+      </div>
+      <div class="alert-item general">
+        <span class="alert-icon">📢</span>
+        <strong>General Notice:</strong> New nutrition tips available in your dashboard.
+        <div class="alert-time">2 days ago</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

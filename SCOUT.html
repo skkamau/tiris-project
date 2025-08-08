@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Scouting - TIRIS Coach</title>
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap">
+  <style>
+    body {
+      background: linear-gradient(135deg, #f3f4f6 0%, #e0e7ff 100%);
+      font-family: 'Montserrat', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      color: #222;
+    }
+    .container {
+      max-width: 900px;
+      margin: 60px auto;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 4px 24px rgba(60,72,128,0.09);
+      padding: 36px 32px 28px 32px;
+    }
+    h1 {
+      color: #b45309;
+      font-size: 2em;
+      font-weight: 700;
+      margin-bottom: 28px;
+      text-align: center;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 8px #b4530922;
+    }
+    .scout-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 1.05em;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px #b4530911;
+      background: #f9fafb;
+      margin-bottom: 32px;
+    }
+    .scout-table th, .scout-table td {
+      padding: 12px 14px;
+      border-bottom: 1px solid #e5e7eb;
+      text-align: left;
+    }
+    .scout-table th {
+      color: #b45309;
+      font-weight: 700;
+      background: #fffbe6;
+      letter-spacing: 1px;
+    }
+    .scout-table tr:last-child td {
+      border-bottom: none;
+    }
+    .scout-form {
+      background: #fffbe6;
+      padding: 24px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px #b4530911;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    .scout-form label {
+      font-weight: 600;
+      color: #b45309;
+      margin-bottom: 4px;
+    }
+    .scout-form select,
+    .scout-form textarea {
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #d1d5db;
+      font-size: 1em;
+      font-family: inherit;
+      margin-bottom: 8px;
+      background: #fff;
+    }
+    .scout-form button {
+      background: linear-gradient(90deg, #b45309 60%, #6366f1 100%);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 10px 0;
+      font-size: 1em;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 2px 8px #b4530922;
+      transition: background 0.2s;
+      margin-top: 8px;
+    }
+    .scout-form button:hover {
+      background: linear-gradient(90deg, #b45309 80%, #6366f1 100%);
+    }
+    .success-message {
+      color: #059669;
+      font-size: 1em;
+      margin-top: 10px;
+      display: none;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Scouting</h1>
+    <table class="scout-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Sport</th>
+          <th>Score</th>
+          <th>Status</th>
+          <th>Scouting Note</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Jane Doe</td>
+          <td>Running</td>
+          <td>98</td>
+          <td>Scouted</td>
+          <td>Excellent pace, recommended for regional trials.</td>
+        </tr>
+        <tr>
+          <td>Emily Lee</td>
+          <td>Yoga</td>
+          <td>93</td>
+          <td>Shortlisted</td>
+          <td>Great flexibility, needs endurance work.</td>
+        </tr>
+        <tr>
+          <td>Michael Brown</td>
+          <td>Cycling</td>
+          <td>90</td>
+          <td>Active</td>
+          <td>Shows promise, monitor next race.</td>
+        </tr>
+      </tbody>
+    </table>
+    <form class="scout-form" id="scoutForm">
+      <label for="scoutAthlete">Select Athlete</label>
+      <select id="scoutAthlete" required>
+        <option value="">Choose athlete</option>
+        <option value="Jane Doe">Jane Doe</option>
+        <option value="Emily Lee">Emily Lee</option>
+        <option value="Michael Brown">Michael Brown</option>
+      </select>
+      <label for="scoutNote">Scouting Note</label>
+      <textarea id="scoutNote" rows="3" placeholder="Type your scouting note..." required></textarea>
+      <button type="submit">Save Note</button>
+      <div class="success-message" id="scoutMsg">Scouting note saved!</div>
+    </form>
+  </div>
+  <script>
+    document.getElementById('scoutForm').onsubmit = function(e) {
+      e.preventDefault();
+      document.getElementById('scoutMsg').style.display = 'block';
+      setTimeout(() => {
+        document.getElementById('scoutMsg').style.display = 'none';
+        document.getElementById('scoutForm').reset();
+      }, 1500);
+    };
+  </script>

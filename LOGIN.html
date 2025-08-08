@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>TIRIS Login</title>
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap">
+  <style>
+    body {
+      background: linear-gradient(135deg, #f3f4f6 0%, #e0e7ff 100%);
+      font-family: 'Montserrat', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      color: #222;
+    }
+    .login-container {
+      width: 370px;
+      margin: 80px auto;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 4px 24px rgba(60,72,128,0.09);
+      padding: 36px 32px 28px 32px;
+      text-align: center;
+    }
+    .login-logo {
+      margin-bottom: 16px;
+    }
+    .login-logo img {
+      height: 48px;
+      margin-bottom: 6px;
+      filter: drop-shadow(0 2px 8px #7c3aed55);
+    }
+    .login-logo div {
+      font-size: 1.2em;
+      color: #7c3aed;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-shadow: 0 2px 8px #7c3aed22;
+    }
+    .login-title {
+      font-size: 1.5em;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #7c3aed;
+    }
+    .login-desc {
+      color: #666;
+      font-size: 1em;
+      margin-bottom: 22px;
+    }
+    .login-form {
+      text-align: left;
+      margin-bottom: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .login-form label {
+      font-weight: 600;
+      color: #7c3aed;
+      margin-bottom: 4px;
+    }
+    .login-form input,
+    .login-form select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 8px;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      font-size: 1em;
+      box-sizing: border-box;
+      background: #f9fafb;
+    }
+    .login-btn {
+      width: 100%;
+      padding: 12px 0;
+      background: linear-gradient(90deg, #7c3aed 60%, #6366f1 100%);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-size: 1.08em;
+      font-weight: 700;
+      cursor: pointer;
+      margin-bottom: 8px;
+      transition: background 0.2s;
+      letter-spacing: 1px;
+      box-shadow: 0 2px 8px #7c3aed22;
+    }
+    .login-btn:hover {
+      background: linear-gradient(90deg, #5b21b6 60%, #6366f1 100%);
+    }
+    .login-footer {
+      font-size: 0.98em;
+      color: #888;
+      margin-top: 10px;
+    }
+    .login-footer a {
+      color: #7c3aed;
+      text-decoration: none;
+      margin-left: 4px;
+    }
+    .success-message {
+      color: #059669;
+      font-size: 1em;
+      margin-top: 10px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <div class="login-logo">
+      <img src="logo.png" alt="TIRIS Logo" onerror="this.style.display='none'">
+      <div>TIRIS</div>
+    </div>
+    <div class="login-title">Welcome Back</div>
+    <div class="login-desc">
+      Enter your credentials to access your athlete or coach dashboard.
+    </div>
+    <form class="login-form" id="loginForm">
+      <label for="role">Login as:</label>
+      <select id="role" required>
+        <option value="">Select role</option>
+        <option value="athlete">Athlete</option>
+        <option value="coach">Coach</option>
+      </select>
+      <label for="email">Email</label>
+      <input type="email" id="email" placeholder="your@example.com" required>
+      <label for="password">Password</label>
+      <input type="password" id="password" placeholder="********" required>
+      <button type="submit" class="login-btn">Login</button>
+      <div class="success-message" id="successMsg">Login successful! Redirecting...</div>
+    </form>
+    <div class="login-footer">
+      Don't have an account?
+      <a href="SIGNUP.html" style="color:#7c3aed;text-decoration:none;">Sign up</a>
+    </div>
+  </div>
+  <script>
+    document.getElementById('loginForm').onsubmit = function(e) {
+      e.preventDefault();
+      const role = document.getElementById('role').value;
+      document.getElementById('successMsg').style.display = 'block';
+      setTimeout(() => {
+        if (role === 'coach') {
+          window.location.href = 'coachdash.html';
+        } else {
+          window.location.href = 'HOME.html';
+        }
+      }, 1200);
+    };
+  </script>
+</body>
+</html>

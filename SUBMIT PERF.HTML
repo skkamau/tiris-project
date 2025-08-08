@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Progress Charts & Athlete Ranking - TIRIS</title>
+  <link rel="stylesheet" href="styles/main.css">
+  <style>
+    body {
+      background: #fafbfc;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+      padding: 32px 32px 24px 32px;
+    }
+    h1 {
+      color: #2d2dbb;
+      font-size: 1.5em;
+      margin-bottom: 24px;
+      text-align: center;
+    }
+    .charts-section, .ranking-section {
+      margin-bottom: 32px;
+    }
+    .chart-placeholder {
+      width: 100%;
+      height: 220px;
+      background: url('chart-placeholder.png') center/contain no-repeat #f3f4f6;
+      border-radius: 6px;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #888;
+      font-size: 1.1em;
+    }
+    .ranking-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 1em;
+      margin-top: 10px;
+    }
+    .ranking-table th, .ranking-table td {
+      padding: 10px 12px;
+      border-bottom: 1px solid #e5e7eb;
+      text-align: left;
+    }
+    .ranking-table th {
+      background: #f9fafb;
+      color: #4a5a7a;
+      font-weight: 600;
+    }
+    .ranking-table tr:nth-child(1) td {
+      background: #e6fffa;
+      font-weight: bold;
+      color: #059669;
+    }
+    .ranking-table tr:nth-child(2) td {
+      background: #f3f4f6;
+      font-weight: bold;
+      color: #2d2dbb;
+    }
+    .ranking-table tr:nth-child(3) td {
+      background: #fffbe6;
+      font-weight: bold;
+      color: #b45309;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Progress Charts & Athlete Ranking</h1>
+    <div class="charts-section">
+      <h2>Performance Progress Chart</h2>
+      <div class="chart-placeholder">
+        <!-- Replace with actual chart if available -->
+        Progress Chart Placeholder
+      </div>
+    </div>
+    <div class="ranking-section">
+      <h2>Athlete Ranking</h2>
+      <table class="ranking-table">
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Athlete Name</th>
+            <th>Score</th>
+            <th>Recent Activity</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Jane Doe</td>
+            <td>98</td>
+            <td>Morning Run (5K)</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>John Smith</td>
+            <td>95</td>
+            <td>Strength Training</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Emily Lee</td>
+            <td>93</td>
+            <td>Yoga Session</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>Michael Brown</td>
+            <td>90</td>
+            <td>Cycling (15k)</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>Sarah Kim</td>
+            <td>88</td>
+            <td>Swim Drills</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="video-section" style="margin-top:40px;">
+      <h2>Share Your Sport Video</h2>
+      <form>
+        <label for="sportType" style="font-weight:600;">Select Sport:</label>
+        <select id="sportType" name="sportType" style="margin-bottom:12px; padding:8px; border-radius:6px; border:1px solid #d1d5db;">
+          <option value="">Choose sport</option>
+          <option value="Running">Running</option>
+          <option value="Swimming">Swimming</option>
+          <option value="Cycling">Cycling</option>
+          <option value="Yoga">Yoga</option>
+          <option value="Strength Training">Strength Training</option>
+          <option value="Other">Other</option>
+        </select>
+        <br>
+        <label for="videoUpload" style="font-weight:600;">Upload Video:</label>
+        <input type="file" id="videoUpload" name="videoUpload" accept="video/*" style="margin-bottom:12px;">
+        <br>
+        <button type="submit" style="background:linear-gradient(90deg,#7c3aed 60%,#6366f1 100%);color:#fff;border:none;border-radius:6px;padding:10px 24px;font-size:1em;font-weight:600;cursor:pointer;">Submit Video</button>
+      </form>
+      <div id="videoPreview" style="margin-top:20px;"></div>
+    </div>
+  </div>
+  <script>
+    document.querySelector('.video-section form').onsubmit = function(e) {
+      e.preventDefault();
+      const fileInput = document.getElementById('videoUpload');
+      const sportType = document.getElementById('sportType').value;
+      const preview = document.getElementById('videoPreview');
+      if (fileInput.files.length > 0 && sportType) {
+        const file = fileInput.files[0];
+        const url = URL.createObjectURL(file);
+        preview.innerHTML = `<strong>Sport:</strong> ${sportType}<br><video controls width="320"><source src="${url}" type="${file.type}">Your browser does not support the video tag.</video>`;
+      } else {
+        preview.innerHTML = `<span style="color:#b91c1c;">Please select a sport and upload a video.</span>`;
+      }
+    };
+  </script>
+</body>
+</html>

@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Coach Dashboard - TIRIS</title>
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap">
+  <style>
+    body {
+      background: linear-gradient(135deg, #f3f4f6 0%, #e0e7ff 100%);
+      font-family: 'Montserrat', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      color: #222;
+    }
+    .sidebar {
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 240px;
+      height: 100vh;
+      background: linear-gradient(135deg, #fff 60%, #e0e7ff 100%);
+      border-right: 1px solid #e5e7eb;
+      padding: 32px 0 0 0;
+      box-sizing: border-box;
+      box-shadow: 2px 0 16px rgba(60,72,128,0.07);
+    }
+    .sidebar .logo {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .sidebar .logo img {
+      height: 48px;
+      margin-bottom: 8px;
+      filter: drop-shadow(0 2px 8px #7c3aed55);
+    }
+    .sidebar .logo div {
+      font-size: 1.3em;
+      color: #059669;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-shadow: 0 2px 8px #05966922;
+    }
+    .sidebar nav {
+      margin-top: 24px;
+    }
+    .sidebar nav a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #4a5a7a;
+      text-decoration: none;
+      padding: 14px 36px;
+      font-size: 1.08em;
+      border-left: 4px solid transparent;
+      border-radius: 0 20px 20px 0;
+      margin-bottom: 6px;
+      transition: background 0.2s, border-color 0.2s, color 0.2s;
+      font-weight: 500;
+    }
+    .sidebar nav a.active,
+    .sidebar nav a:hover {
+      background: linear-gradient(90deg, #e6fffa 60%, #e0e7ff 100%);
+      border-left: 4px solid #059669;
+      color: #059669;
+      box-shadow: 0 2px 8px #05966911;
+    }
+    .main-content {
+      margin-left: 240px;
+      padding: 40px 48px;
+      min-height: 100vh;
+      background: transparent;
+    }
+    .dashboard-title {
+      font-size: 2.3em;
+      font-weight: 700;
+      color: #059669;
+      margin-bottom: 24px;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 8px #05966922;
+    }
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 32px;
+      gap: 16px;
+    }
+    .search-box {
+      background: #fff;
+      border: 1.5px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 10px 18px;
+      font-size: 1.08em;
+      width: 320px;
+      box-shadow: 0 2px 8px #05966911;
+      transition: border 0.2s;
+    }
+    .search-box:focus {
+      border: 1.5px solid #059669;
+      outline: none;
+    }
+    .card {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 4px 24px rgba(60,72,128,0.09);
+      padding: 32px;
+      margin-bottom: 32px;
+      transition: box-shadow 0.2s;
+    }
+    .card:hover {
+      box-shadow: 0 8px 32px #05966922;
+    }
+    .card h2 {
+      font-size: 1.25em;
+      font-weight: 700;
+      margin-bottom: 22px;
+      color: #059669;
+      letter-spacing: 1px;
+    }
+    .athlete-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 1.05em;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px #05966911;
+      background: #f9fafb;
+    }
+    .athlete-table th, .athlete-table td {
+      padding: 12px 14px;
+      border-bottom: 1px solid #e5e7eb;
+      text-align: left;
+    }
+    .athlete-table th {
+      color: #059669;
+      font-weight: 700;
+      background: #e6fffa;
+      letter-spacing: 1px;
+    }
+    .athlete-table tr:last-child td {
+      border-bottom: none;
+    }
+    .feedback-form {
+      margin-top: 24px;
+      background: #e6fffa;
+      padding: 24px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px #05966911;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-width: 500px;
+    }
+    .feedback-form label {
+      font-weight: 600;
+      color: #059669;
+      margin-bottom: 4px;
+    }
+    .feedback-form select,
+    .feedback-form textarea {
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #d1d5db;
+      font-size: 1em;
+      font-family: inherit;
+      margin-bottom: 8px;
+      background: #fff;
+    }
+    .feedback-form button {
+      background: linear-gradient(90deg, #059669 60%, #6366f1 100%);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 10px 0;
+      font-size: 1em;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 2px 8px #05966922;
+      transition: background 0.2s;
+      margin-top: 8px;
+    }
+    .feedback-form button:hover {
+      background: linear-gradient(90deg, #059669 80%, #6366f1 100%);
+    }
+    .success-message {
+      color: #059669;
+      font-size: 1em;
+      margin-top: 10px;
+      display: none;
+    }
+    @media (max-width: 900px) {
+      .main-content { padding: 24px 8px; }
+      .sidebar { width: 100px; }
+      .sidebar nav a { padding: 12px 12px; font-size: 0.95em; }
+      .main-content { margin-left: 100px; }
+    }
+    @media (max-width: 600px) {
+      .sidebar { display: none; }
+      .main-content { margin-left: 0; padding: 12px 4px; }
+    }
+  </style>
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="logo">
+      <img src="logo.png" alt="TIRIS Logo" onerror="this.style.display='none'">
+      <div>TIRIS Coach</div>
+    </div>
+    <nav>
+      <a href="#" class="active"><span>🏠</span>Dashboard</a>
+      <a href="ATHLETE.html"><span>👥</span>View Athletes</a>
+      <a href="SCOUT.html"><span>🔎</span>Scouting</a>
+      <a href="ALERT.HTML"><span>🔔</span>Alerts</a>
+      <a href="#"><span>🚪</span>Logout</a>
+    </nav>
+  </aside>
+  <div class="main-content">
+    <div class="dashboard-title">Coach Dashboard</div>
+    <div class="top-bar">
+      <input class="search-box" type="text" placeholder="Search athletes, data, or alerts...">
+    </div>
+    <div class="card">
+      <h2>Recent Athlete Performance</h2>
+      <table class="athlete-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Sport</th>
+            <th>Last Activity</th>
+            <th>Score</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Jane Doe</td>
+            <td>Running</td>
+            <td>Morning Run (5K)</td>
+            <td>98</td>
+            <td>Scouted</td>
+          </tr>
+          <tr>
+            <td>John Smith</td>
+            <td>Strength Training</td>
+            <td>Strength Training</td>
+            <td>95</td>
+            <td>Active</td>
+          </tr>
+          <tr>
+            <td>Emily Lee</td>
+            <td>Yoga</td>
+            <td>Yoga Session</td>
+            <td>93</td>
+            <td>Shortlisted</td>
+          </tr>
+          <tr>
+            <td>Michael Brown</td>
+            <td>Cycling</td>
+            <td>Cycling (15k)</td>
+            <td>90</td>
+            <td>Active</td>
+          </tr>
+          <tr>
+            <td>Sarah Kim</td>
+            <td>Swimming</td>
+            <td>Swim Drills</td>
+            <td>88</td>
+            <td>Active</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card">
+      <h2>Send Feedback to Athlete</h2>
+      <form class="feedback-form" id="feedbackForm">
+        <label for="athleteSelect">Select Athlete</label>
+        <select id="athleteSelect" required>
+          <option value="">Choose athlete</option>
+          <option value="Jane Doe">Jane Doe</option>
+          <option value="John Smith">John Smith</option>
+          <option value="Emily Lee">Emily Lee</option>
+          <option value="Michael Brown">Michael Brown</option>
+          <option value="Sarah Kim">Sarah Kim</option>
+        </select>
+        <label for="feedbackMsg">Message</label>
+        <textarea id="feedbackMsg" rows="3" placeholder="Type your feedback..." required></textarea>
+        <button type="submit">Send Feedback</button>
+        <div class="success-message" id="successMsg">Feedback sent successfully!</div>
+      </form>
+    </div>
+    <div class="card">
+      <h2>Scouting Notes</h2>
+      <form class="feedback-form" id="scoutForm">
+        <label for="scoutAthlete">Select Athlete</label>
+        <select id="scoutAthlete" required>
+          <option value="">Choose athlete</option>
+          <option value="Jane Doe">Jane Doe</option>
+          <option value="John Smith">John Smith</option>
+          <option value="Emily Lee">Emily Lee</option>
+          <option value="Michael Brown">Michael Brown</option>
+          <option value="Sarah Kim">Sarah Kim</option>
+        </select>
+        <label for="scoutNote">Scouting Note</label>
+        <textarea id="scoutNote" rows="3" placeholder="Type your scouting note..." required></textarea>
+        <button type="submit">Save Note</button>
+        <div class="success-message" id="scoutMsg">Scouting note saved!</div>
+      </form>
+    </div>
+  </div>
+  <script>
+    document.getElementById('feedbackForm').onsubmit = function(e) {
+      e.preventDefault();
+      document.getElementById('successMsg').style.display = 'block';
+      setTimeout(() => {
+        document.getElementById('successMsg').style.display = 'none';
+        document.getElementById('feedbackForm').reset();
+      }, 1500);
+    };
+    document.getElementById('scoutForm').onsubmit = function(e) {
+      e.preventDefault();
+      document.getElementById('scoutMsg').style.display = 'block';
+      setTimeout(() => {
+        document.getElementById('scoutMsg').style.display = 'none';
+        document.getElementById('scoutForm').reset();
+      }, 1500);
+    };
+  </script>
+</body>
+</html>

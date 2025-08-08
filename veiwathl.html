@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>View Athletes - TIRIS Coach</title>
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap">
+  <style>
+    body {
+      background: linear-gradient(135deg, #f3f4f6 0%, #e0e7ff 100%);
+      font-family: 'Montserrat', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      color: #222;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 60px auto;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 4px 24px rgba(60,72,128,0.09);
+      padding: 36px 32px 28px 32px;
+    }
+    h1 {
+      color: #059669;
+      font-size: 2em;
+      font-weight: 700;
+      margin-bottom: 28px;
+      text-align: center;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 8px #05966922;
+    }
+    .search-bar {
+      width: 100%;
+      padding: 10px 18px;
+      border-radius: 8px;
+      border: 1px solid #d1d5db;
+      font-size: 1.08em;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 8px #05966911;
+    }
+    .athlete-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 1.05em;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px #05966911;
+      background: #f9fafb;
+      margin-bottom: 32px;
+    }
+    .athlete-table th, .athlete-table td {
+      padding: 12px 14px;
+      border-bottom: 1px solid #e5e7eb;
+      text-align: left;
+      vertical-align: middle;
+    }
+    .athlete-table th {
+      color: #059669;
+      font-weight: 700;
+      background: #e6fffa;
+      letter-spacing: 1px;
+    }
+    .athlete-table tr:last-child td {
+      border-bottom: none;
+    }
+    .profile-img {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #059669;
+      margin-right: 8px;
+    }
+    .profile-link {
+      color: #6366f1;
+      text-decoration: underline;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .athlete-details {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .athlete-info {
+      font-size: 0.98em;
+      color: #444;
+    }
+    @media (max-width: 900px) {
+      .container { padding: 12px 4px; }
+      .athlete-table th, .athlete-table td { padding: 8px 6px; font-size: 0.95em; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>All Athletes</h1>
+    <input class="search-bar" type="text" id="searchInput" placeholder="Search athletes by name, sport, or location...">
+    <table class="athlete-table" id="athleteTable">
+      <thead>
+        <tr>
+          <th>Profile</th>
+          <th>Name</th>
+          <th>Sports</th>
+          <th>Location</th>
+          <th>Last Activity</th>
+          <th>Score</th>
+          <th>Status</th>
+          <th>Profile</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><img src="profile-placeholder.png" alt="Jane Doe" class="profile-img"></td>
+          <td>
+            <div class="athlete-details">
+              Jane Doe
+              <span class="athlete-info">(Athlete)</span>
+            </div>
+          </td>
+          <td>Running, Swimming</td>
+          <td>Nairobi, Kenya</td>
+          <td>Morning Run (5K)</td>
+          <td>98</td>
+          <td>Scouted</td>
+          <td><a class="profile-link" href="#">View Profile</a></td>
+        </tr>
+        <tr>
+          <td><img src="profile-placeholder.png" alt="John Smith" class="profile-img"></td>
+          <td>
+            <div class="athlete-details">
+              John Smith
+              <span class="athlete-info">(Athlete)</span>
+            </div>
+          </td>
+          <td>Strength Training, Football</td>
+          <td>Lagos, Nigeria</td>
+          <td>Strength Training</td>
+          <td>95</td>
+          <td>Active</td>
+          <td><a class="profile-link" href="#">View Profile</a></td>
+        </tr>
+        <tr>
+          <td><img src="profile-placeholder.png" alt="Emily Lee" class="profile-img"></td>
+          <td>
+            <div class="athlete-details">
+              Emily Lee
+              <span class="athlete-info">(Athlete)</span>
+            </div>
+          </td>
+          <td>Yoga, Swimming</td>
+          <td>Cape Town, South Africa</td>
+          <td>Yoga Session</td>
+          <td>93</td>
+          <td>Shortlisted</td>
+          <td><a class="profile-link" href="#">View Profile</a></td>
+        </tr>
+        <tr>
+          <td><img src="profile-placeholder.png" alt="Michael Brown" class="profile-img"></td>
+          <td>
+            <div class="athlete-details">
+              Michael Brown
+              <span class="athlete-info">(Athlete)</span>
+            </div>
+          </td>
+          <td>Cycling, Basketball</td>
+          <td>Accra, Ghana</td>
+          <td>Cycling (15k)</td>
+          <td>90</td>
+          <td>Active</td>
+          <td><a class="profile-link" href="#">View Profile</a></td>
+        </tr>
+        <tr>
+          <td><img src="profile-placeholder.png" alt="Sarah Kim" class="profile-img"></td>
+          <td>
+            <div class="athlete-details">
+              Sarah Kim
+              <span class="athlete-info">(Athlete)</span>
+            </div>
+          </td>
+          <td>Swimming, Running</td>
+          <td>Johannesburg, South Africa</td>
+          <td>Swim Drills</td>
+          <td>88</td>
+          <td>Active</td>
+          <td><a class="profile-link" href="#">View Profile</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <script>
+    // Simple search filter for the table
+    document.getElementById('searchInput').addEventListener('input', function() {
+      const filter = this.value.toLowerCase();
+      const rows = document.querySelectorAll('#athleteTable tbody tr');
+      rows.forEach(row => {
+        row.style.display = Array.from(row.children).some(td =>
+          td.textContent.toLowerCase().includes(filter)
+        ) ? '' : 'none';
+      });
+    });
+  </script>
+</body>
+</html>

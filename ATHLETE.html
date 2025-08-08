@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>View Athletes - TIRIS Coach</title>
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap">
+  <style>
+    body {
+      background: linear-gradient(135deg, #f3f4f6 0%, #e0e7ff 100%);
+      font-family: 'Montserrat', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      color: #222;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 60px auto;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 4px 24px rgba(60,72,128,0.09);
+      padding: 36px 32px 28px 32px;
+    }
+    h1 {
+      color: #059669;
+      font-size: 2em;
+      font-weight: 700;
+      margin-bottom: 28px;
+      text-align: center;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 8px #05966922;
+    }
+    .search-bar {
+      width: 100%;
+      padding: 10px 18px;
+      border-radius: 8px;
+      border: 1px solid #d1d5db;
+      font-size: 1.08em;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 8px #05966911;
+    }
+    .athlete-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 1.05em;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px #05966911;
+      background: #f9fafb;
+    }
+    .athlete-table th, .athlete-table td {
+      padding: 12px 14px;
+      border-bottom: 1px solid #e5e7eb;
+      text-align: left;
+    }
+    .athlete-table th {
+      color: #059669;
+      font-weight: 700;
+      background: #e6fffa;
+      letter-spacing: 1px;
+    }
+    .athlete-table tr:last-child td {
+      border-bottom: none;
+    }
+    .profile-link {
+      color: #6366f1;
+      text-decoration: underline;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      background: #fff;
+      padding: 12px 0;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px #05966911;
+      margin-bottom: 32px;
+    }
+    nav a {
+      color: #059669;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 10px 20px;
+      border-radius: 8px;
+      transition: background 0.3s, color 0.3s;
+      margin: 0 10px;
+    }
+    nav a:hover {
+      background: #059669;
+      color: #fff;
+    }
+    nav a.active {
+      background: #059669;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <nav>
+      <a href="#" class="active"><span>🏠</span>Dashboard</a>
+      <a href="veiwathl.html"><span>👥</span>View Athletes</a>
+      <a href="SCOUT.html"><span>🔎</span>Scouting</a>
+      <a href="ALERT.HTML"><span>🔔</span>Alerts</a>
+      <a href="#"><span>🚪</span>Logout</a>
+    </nav>
+    <h1>View Athletes</h1>
+    <input class="search-bar" type="text" id="searchInput" placeholder="Search athletes by name, sport, or status...">
+    <table class="athlete-table" id="athleteTable">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Sport</th>
+          <th>Last Activity</th>
+          <th>Score</th>
+          <th>Status</th>
+          <th>Profile</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Jane Doe</td>
+          <td>Running</td>
+          <td>Morning Run (5K)</td>
+          <td>98</td>
+          <td>Scouted</td>
+          <td><a class="profile-link" href="#">View Profile</a></td>
+        </tr>
+        <tr>
+          <td>John Smith</td>
+          <td>Strength Training</td>
+          <td>Strength Training</td>
+          <td>95</td>
+          <td>Active</td>
+          <td><a class="profile-link" href="#">View Profile</a></td>
+        </tr>
+        <tr>
+          <td>Emily Lee</td>
+          <td>Yoga</td>
+          <td>Yoga Session</td>
+          <td>93</td>
+          <td>Shortlisted</td>
+          <td><a class="profile-link" href="#">View Profile</a></td>
+        </tr>
+        <tr>
+          <td>Michael Brown</td>
+          <td>Cycling</td>
+          <td>Cycling (15k)</td>
+          <td>90</td>
+          <td>Active</td>
+          <td><a class="profile-link" href="#">View Profile</a></td>
+        </tr>
+        <tr>
+          <td>Sarah Kim</td>
+          <td>Swimming</td>
+          <td>Swim Drills</td>
+          <td>88</td>
+          <td>Active</td>
+          <td><a class="profile-link" href="#">View Profile</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <script>
+    // Simple search filter for the table
+    document.getElementById('searchInput').addEventListener('input', function() {
+      const filter = this.value.toLowerCase();
+      const rows = document.querySelectorAll('#athleteTable tbody tr');
+      rows.forEach(row => {
+        row.style.display = Array.from(row.children).some(td =>
+          td.textContent.toLowerCase().includes(filter)
+        ) ? '' : 'none';
+      });
+    });
+  </script>
+</body>
+</html>
